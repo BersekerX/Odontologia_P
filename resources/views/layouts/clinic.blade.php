@@ -8,6 +8,8 @@
     <title>Perfect Smile</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/clinic/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/clinic/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/clinic/css/select2.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/clinic/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" type="text/css" href=" {{ asset('css/clinic/css/style.css')}}">
     <!--[if lt IE 9]>
 		<script src="assets/js/html5shiv.min.js"></script>
@@ -62,12 +64,8 @@
 
         <div class="page-wrapper">
             <div class="content">
-
-                @yield('contenido')
-                
+                @yield('contenido')    
             </div>
-
-
         </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
@@ -75,7 +73,17 @@
 	<script src="{{ asset('js/clinic/js/popper.min.js') }}"></script>
     <script src="{{ asset('js/clinic/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/clinic/js/jquery.slimscroll.js') }}"></script>
+
+    <script src="{{ asset('js/clinic/js/select2.min.js')}}"></script>
+
+    <script src="{{ asset('js/clinic/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('js/clinic/js/dataTables.bootstrap4.min.js')}}"></script>
+
+	<script src="{{ asset('js/clinic/js/moment.min.js')}}"></script>
+	<script src="{{ asset('js/clinic/js/bootstrap-datetimepicker.min.js')}}"></script>
     <script src="{{ asset('js/clinic/js/app.js') }}"></script>
+
+
 </body>
 
 

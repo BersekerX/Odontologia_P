@@ -17,12 +17,12 @@ class CreatePacientesTable extends Migration
         Schema::create('pacientes', function (Blueprint $table) {
             //Datos Generales
             $table->id();
-            $table->string('nombre',30);
-            $table->string('apellidos',30);
+            $table->string('nombre');
+            $table->string('apellidos');
             $table->date('fechaNacimiento');
             $table->string('genero',1);
             $table->biginteger('telefono');
-            $table->string('email',30);
+            $table->string('email',50);
             
             //$table->blob('foto');
 

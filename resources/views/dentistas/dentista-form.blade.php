@@ -7,14 +7,14 @@
                 <h2 class="text-center">Agregar Dentista</h2>
         @endif
         <br>
-
+        
         <div class="row">
                 <div class="col-md-12">
                 @if(isset($dentistum))
-                        <form action="{{ route('dentista.update', $dentistum) }}" method="POST">
+                        <form action="{{ route('dentista.update', $dentistum) }}" method="POST" >
                                 @method('PATCH')
                 @else
-                        <form action="{{ route('dentista.store') }}" method="POST">
+                        <form action="{{ route('dentista.store') }}" method="POST" >
                 @endif
                         @csrf
                                 <div class="card-box">
@@ -24,13 +24,20 @@
                                                         <div class="form-group row">
                                                                 <label class="col-lg-3 col-form-label" for="nombre">Nombre:</label>
                                                                 <div class="col-lg-9">
-                                                                        <input type="text" class="form-control" name="nombre" value= "{{ $dentistum->nombre ?? '' }}">
+                                                                        <input type="text" class="form-control" name="nombre" value= "{{ old('nombre') ?? $dentistum->nombre ?? '' }}">
+                                                                        @error('nombre')
+                                                                                <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                                        @enderror
+                                                                        
                                                                 </div>
                                                         </div>
                                                         <div class="form-group row">
                                                                 <label class="col-lg-3 col-form-label" for="apellidos">Apellido:</label>
                                                                 <div class="col-lg-9">
-                                                                        <input type="text" class="form-control" name="apellidos" value= "{{ $dentistum->apellidos ?? '' }}">
+                                                                        <input type="text" class="form-control" name="apellidos" value= "{{ old('apellidos') ?? $dentistum->apellidos ?? '' }}">
+                                                                        @error('apellidos')
+                                                                                <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
 
@@ -62,7 +69,10 @@
                                                         <div class="form-group row">
                                                                 <label class="col-lg-3 col-form-label" for="fechaNacimiento">Fecha de Nacimiento:</label>
                                                                 <div class="col-lg-9">
-                                                                        <input type="date" class="form-control" name="fechaNacimiento" value= "{{ $dentistum->fechaNacimiento ?? '' }}">
+                                                                        <input type="date" class="form-control" name="fechaNacimiento" value= "{{ old('fechaNacimiento') ?? $dentistum->fechaNacimiento ?? '' }}">
+                                                                        @error('fechaNacimiento')
+                                                                                <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
 
@@ -85,7 +95,10 @@
                                                         <div class="form-group row">
                                                                 <label class="col-lg-3 col-form-label" for="telefono">Teléfono:</label>
                                                                 <div class="col-lg-9">
-                                                                        <input type="text" class="form-control" name="telefono" value= "{{ $dentistum->telefono ?? '' }}">
+                                                                        <input type="text" class="form-control" name="telefono" value= "{{ old('telefono') ?? $dentistum->telefono ?? '' }}">
+                                                                        @error('telefono')
+                                                                                <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
                                                 </div>
@@ -98,33 +111,48 @@
                                                         <div class="form-group row">
                                                                 <label class="col-lg-3 col-form-label" for="noCasa">No. de Casa:</label>
                                                                 <div class="col-lg-9">
-                                                                        <input type="text" class="form-control" name="noCasa" value= "{{ $dentistum->noCasa ?? '' }}">
+                                                                        <input type="text" class="form-control" name="noCasa" value= "{{ old('noCasa') ?? $dentistum->noCasa ?? '' }}">
+                                                                        @error('noCasa')
+                                                                                <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
                                                         <div class="form-group row">
                                                                 <label class="col-lg-3 col-form-label" for="calle">Calle:</label>
                                                                 <div class="col-lg-9">
-                                                                        <input type="text" class="form-control" name="calle" value= "{{ $dentistum->calle ?? '' }}">
+                                                                        <input type="text" class="form-control" name="calle" value= "{{ old('calle') ?? $dentistum->calle ?? '' }}">
+                                                                        @error('calle')
+                                                                                <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
                                                         <div class="form-group row">
                                                                 <label class="col-lg-3 col-form-label" for="colonia">Colonia:</label>
                                                                 <div class="col-lg-9">
-                                                                        <input type="text" class="form-control" name="colonia" value= "{{ $dentistum->colonia ?? '' }}">
+                                                                        <input type="text" class="form-control" name="colonia" value= "{{ old('colonia') ?? $dentistum->colonia ?? '' }}">
+                                                                        @error('colonia')
+                                                                                <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
 
                                                         <div class="form-group row">
                                                                 <label class="col-lg-3 col-form-label" for="municipio">Municipio:</label>
                                                                 <div class="col-lg-9">
-                                                                        <input type="text" class="form-control" name="municipio" value= "{{ $dentistum->municipio ?? '' }}">
+                                                                        <input type="text" class="form-control" name="municipio" value= "{{ old('municipio') ?? $dentistum->municipio ?? '' }}">
+                                                                        @error('municipio')
+                                                                                <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                                        @enderror
                                                                 </div>
                                                         </div>
 
                                                         <div class="form-group row">
                                                                 <label class="col-lg-3 col-form-label" for="estado">Estado:</label>
                                                                 <div class="col-lg-9">
-                                                                        <input type="text" class="form-control" name="estado" value= "{{ $dentistum->estado ?? '' }}">
+                                                                        <input type="text" class="form-control" name="estado" value= "{{ old('estado') ?? $dentistum->estado ?? '' }}" >
+                                                                        @error('estado')
+                                                                                <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                                        @enderror
                                                                 </div>
                                                         </div>   
                                                 </div>

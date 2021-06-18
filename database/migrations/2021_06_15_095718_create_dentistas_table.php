@@ -16,19 +16,19 @@ class CreateDentistasTable extends Migration
         Schema::create('dentistas', function (Blueprint $table) {
             //Datos Generales
             $table->id();
-            $table->string('nombre',30);
-            $table->string('apellidos',30);
+            $table->string('nombre');
+            $table->string('apellidos');
             $table->date('fechaNacimiento');
             $table->string('genero',1);
             $table->biginteger('telefono');
-            $table->string('especialidad',30);
+            $table->string('especialidad');
             
             //Domicilio
             $table->integer('noCasa');
-            $table->string('calle',25);
-            $table->string('colonia',25);
-            $table->string('municipio',25);
-            $table->string('estado',25);
+            $table->string('calle');
+            $table->string('colonia');
+            $table->string('municipio');
+            $table->string('estado');
             $table->timestamps();
 
             //$table->blob('foto');

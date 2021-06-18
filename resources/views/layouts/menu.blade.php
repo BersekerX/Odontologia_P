@@ -7,10 +7,10 @@
                     <a href="index-2.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href="doctors.html"><i class="fa fa-user-md"></i> <span>Dentistas</span></a>
+                    <a href="{{ route('dentista.index')}}"><i class="fa fa-user-md"></i> <span>Dentistas</span></a>
                 </li>
                 <li>
-                    <a href="patients.html"><i class="fa fa-user"></i> <span>Pacientes</span></a>
+                    <a href="{{ route('paciente.index')}}"><i class="fa fa-user"></i> <span>Pacientes</span></a>
                 </li>
                 <li>
                     <a href="appointments.html"><i class="fa fa-calendar"></i> <span>Appointments</span></a>

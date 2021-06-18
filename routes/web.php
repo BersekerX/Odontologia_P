@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\DentistaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::resource('dentista', DentistaController::class);
+
+Route::resource('paciente', PacienteController::class);
+
+
+Route::get('inicio', function(){
+    return view('inicio');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

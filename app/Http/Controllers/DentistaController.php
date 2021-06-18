@@ -7,6 +7,23 @@ use Illuminate\Http\Request;
 
 class DentistaController extends Controller
 {
+    private $validacion;
+    public function __construct(){
+        $this->validacion = [
+            'nombre' => ['required', 'string', 'min:3','max:255'],
+            'apellidos' => ['required', 'string', 'min:3', 'max:255'],
+            'fechaNacimiento' => ['required', 'date'],
+            'telefono' => ['required', 'int', 'min:10'],
+
+            //----Domicilio----
+
+            'noCasa' => ['required', 'int', 'min:1'],
+            'calle' => ['required', 'string', 'max:255'],
+            'colonia' => ['required', 'string', 'max:255'],
+            'municipio' => ['required', 'string', 'max:255'],
+            'estado' => ['required', 'string', 'max:255'],];
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,6 +53,8 @@ class DentistaController extends Controller
      */
     public function store(Request $request)
     {
+        //Validando Form
+        $request->validate($this->validacion);
         Dentista::create($request->all());
         return redirect('/dentista');
     }
@@ -71,6 +90,8 @@ class DentistaController extends Controller
      */
     public function update(Request $request, Dentista $dentistum)
     {
+        $request->validate($this->validacion);
+
         Dentista::where('id', $dentistum->id)->update($request->except('_token', '_method'));
         return redirect()->route('dentista.show', $dentistum); 
     }

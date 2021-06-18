@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 
 class PacienteController extends Controller
 {
+
+    private $validacion;
+    public function __construct(){
+        $this->validacion = [
+            'nombre' => ['required', 'string', 'min:3','max:255'],
+            'apellidos' => ['required', 'string', 'min:3', 'max:255'],
+            'fechaNacimiento' => ['required', 'date'],
+            'telefono' => ['required', 'int', 'min:10'],
+            'email' => ['required', 'string', 'min:5'],
+        ];
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,6 +48,9 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
+        //Validar campos
+        $request->validate($this->validacion);
+
         $dentista = new Paciente($request->all()); 
         $dentista->save();
 
@@ -74,6 +89,8 @@ class PacienteController extends Controller
      */
     public function update(Request $request, Paciente $paciente)
     {
+        $request->validate($this->validacion);
+
         Paciente::where('id', $paciente->id)->update($request->except('_token', '_method'));
         return redirect()->route('paciente.show', $paciente); 
     }
