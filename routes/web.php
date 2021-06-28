@@ -21,7 +21,9 @@ Route::get('/', function () {
 
 Route::resource('dentista', DentistaController::class);
 
+Route::post('paciente/{paciente}/asigna-tratamiento', [PacienteController::class, 'asignaTratamiento'])->name('paciente.asigna-tratamiento');
 Route::resource('paciente', PacienteController::class);
+
 
 
 Route::get('inicio', function(){

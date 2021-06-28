@@ -17,7 +17,7 @@
                 @endif
                         @csrf
                                 <!-- ?? '' Para tener un input vacio -->
-                                <div class="card-box">     
+                        <div class="card-box">     
                                 <div class="row">
                                         <div class="col-sm-6">
                                                 <div class="form-group">
@@ -84,18 +84,19 @@
                                         <div class="col-sm-6">
                                                 <div class="form-group">
                                                         <label for="email">Email </label>
-                                                        <input class="form-control" type="text" name="email" value= "{{ old('email') ?? $paciente->email ?? '' }}">
+                                                        <input class="form-control" type="email" name="email" value= "{{ old('email') ?? $paciente->email ?? '' }}">
                                                         @error('email')
                                                                 <div><label style="color:#DC3545">{{ $message }}</label></div>
                                                         @enderror
                                                 </div>
                                         </div>    
                                 </div>
-                                </div>
+                        </div>
 
-                                <div class="m-t-20 text-center">
-                                        <button class="btn btn-success submit-btn">Guardar</button>
-                                </div>
+                        <div class="m-t-20 text-center">
+                                <button class="btn btn-success submit-btn">Guardar</button>
+                        </div>
+                        
                         </form>
                 </div>
         </div>                              

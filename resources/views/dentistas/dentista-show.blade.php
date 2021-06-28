@@ -10,7 +10,7 @@
             <h2>Detalles del Dentista</h2>
         </div>
         <div class="col-sm-5 col-6 text-right m-b-30">
-            <a href="{{ route('dentista.edit', $dentistum) }}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Editar Dentista</a>
+            <a href="{{ route('dentista.edit', $dentistum) }}" class="btn btn-primary btn-rounded"><i class="fa fa-pencil"></i> Editar Dentista</a>
         </div>
     </div>
 
@@ -78,6 +78,10 @@
                                     <li>
                                         <span class="title">Calle:</span>
                                         <span class="text">{{ $dentistum->calle}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="title">Colonia:</span>
+                                        <span class="text">{{ $dentistum->colonia}}</span>
                                     </li>
                                     <li>
                                         <span class="title">Municipio:</span>

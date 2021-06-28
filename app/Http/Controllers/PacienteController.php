@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tratamiento;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 
@@ -66,7 +67,8 @@ class PacienteController extends Controller
      */
     public function show(Paciente $paciente)
     {
-        return view('pacientes.paciente-show', compact('paciente'));
+        $tratamientos = Tratamiento::get();
+        return view('pacientes.paciente-show', compact('paciente', 'tratamientos'));
     }
 
     /**
@@ -105,5 +107,19 @@ class PacienteController extends Controller
     {
         $paciente->delete();
         return redirect()->route('paciente.index'); 
+    }
+
+    /**
+     * Asigna un Tratamiento a Paciente
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Paciente  $paciente
+     * @return \Illuminate\Http\Response
+     */
+    public function asignaTratamiento(Request $request, Paciente $paciente)
+    {
+        // dd($request->all(), $paciente);
+        $paciente->tratamientos()->sync($request->tratamiento_id);
+        
+        return redirect()->route('paciente.show', $paciente);
     }
 }

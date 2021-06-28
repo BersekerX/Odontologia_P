@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
-                <table class="table table-striped ">
+                <table class="table table-striped table-hover">
                 <!-- custom-table mb-0 datatable -->
                     <thead>
                         <tr>
@@ -44,49 +44,55 @@
                     <tbody>
                         @foreach($pacientes as $paciente)
                         <tr>
-                                <td>
-                                    <img width="20" height="20" src=" {{asset('css/clinic/img/user.jpg') }}" class="rounded-circle" alt=""> <a href="{{ route('paciente.show', $paciente->id)}}">{{ $paciente->nombre}}</a>
-                                </td>
-                                <td>{{ $paciente->apellidos}}</td>
-                                <td>{{ $paciente->fechaNacimiento}}</td>
-                                <td>{{ $paciente->genero}}</td>
-                                <td>{{ $paciente->telefono}}</td>
-                                <td>{{ $paciente->email}}</td>
+                        <!-- style="min-width: 200px;" -->
+                            <td >
+                                <a class="avatar" href="{{ route('paciente.show', $paciente->id)}}">{{ $paciente->nombre[0]}}</a>
+                                <h2><a href="{{ route('paciente.show', $paciente->id)}}">{{ $paciente->nombre}}</a></h2>
+                            </td>
 
-                                <!-- Action -->
-                                <td>
-                                    <a href="{{ route('paciente.edit', $paciente)}}"><i class="fa fa-pencil m-r-10"></i></a>
-                                    <a href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i></a>
-                                    
+                            <!-- <td>
+                                <img width="20" height="20" src=" {{asset('css/clinic/img/user.jpg') }}" class="rounded-circle" alt=""> <a href="{{ route('paciente.show', $paciente->id)}}">{{ $paciente->nombre}}</a>
+                            </td> -->
+                            <td>{{ $paciente->apellidos}}</td>
+                            <td>{{ $paciente->fechaNacimiento}}</td>
+                            <td>{{ $paciente->genero}}</td>
+                            <td>{{ $paciente->telefono}}</td>
+                            <td>{{ $paciente->email}}</td>
 
-                                    <div id="delete_employee" class="modal fade delete-modal" role="dialog">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-body text-center">
-                                                    <img src="{{asset('css/clinic/img/sent.png') }}" alt="" width="50" height="46">
-                                                    <h3>¿Estás seguro que deseas borrar a este paciente?</h3>
-                                                    <div class="m-t-20"> 
+                            <!-- Action -->
+                            <td>
+                                <a href="{{ route('paciente.edit', $paciente)}}"><i class="fa fa-pencil m-r-10"></i></a>
+                                <a href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i></a>
+                                
 
-                                                        <form action="{{ route('paciente.destroy', $paciente) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <!-- <button class="btn btn-danger submit-btn">Eliminar</button> -->
-                                                            <a href="#" class="btn btn-white" data-dismiss="modal">Cerrar</a>
+                                <div id="delete_employee" class="modal fade delete-modal" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-body text-center">
+                                                <img src="{{asset('css/clinic/img/sent.png') }}" alt="" width="50" height="46">
+                                                <h3>¿Estás seguro que deseas borrar a este paciente?</h3>
+                                                <div class="m-t-20"> 
 
-                                                            <!-- <a href="#" class="btn btn-danger" data-dismiss="modal">Cerrar</a> -->
-                                                            <button type="submit" class="btn btn-danger">Borrar</button>
-                                                            <!-- <input type="submit" class="btn btn-danger btn-lg" value="Borrar"> -->
-                                                    
-                                                        </form>
+                                                    <form action="{{ route('paciente.destroy', $paciente) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <!-- <button class="btn btn-danger submit-btn">Eliminar</button> -->
+                                                        <a href="#" class="btn btn-white" data-dismiss="modal">Cerrar</a>
 
-                                                        <!-- <button type="submit" class="btn btn-danger">Borrar</button> -->
-                                                    </div>
+                                                        <!-- <a href="#" class="btn btn-danger" data-dismiss="modal">Cerrar</a> -->
+                                                        <button type="submit" class="btn btn-danger">Borrar</button>
+                                                        <!-- <input type="submit" class="btn btn-danger btn-lg" value="Borrar"> -->
+                                                
+                                                    </form>
+
+                                                    <!-- <button type="submit" class="btn btn-danger">Borrar</button> -->
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                </td>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>                    
