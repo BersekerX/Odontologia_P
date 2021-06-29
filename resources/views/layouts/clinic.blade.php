@@ -37,14 +37,28 @@
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                         <span class="user-img"><img class="rounded-circle" src="{{ asset('css/clinic/img/user.jpg')}}" width="40" alt="Admin">
-							<span class="status online"></span></span>
-                        <span>Admin</span>
+                        
+                        <!-- <span class="user-img"><img class="rounded-circle" src="{{ Auth::user()->profile_photo_url }}" width="40" alt="{{ Auth::user()->name }}"> -->
+
+                        <span class="status online"></span></span>
+                        <span>{{ Auth::user()->name }}</span>
                     </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="profile.html">Mi Perfil</a>
 						<a class="dropdown-item" href="edit-profile.html">Editar Perfil</a>
 						<a class="dropdown-item" href="settings.html">Configuración</a>
-						<a class="dropdown-item" href="login.html">Cerrar Sesión</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+<!-- 
+                            <x-jet-responsive-nav-link href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-jet-responsive-nav-link> -->
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();"> Cerrar Sesión </a>
+                        </form>
+
 					</div>
                 </li>
             </ul>
