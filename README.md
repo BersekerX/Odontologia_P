@@ -1,3 +1,7 @@
+<p align="center">Nombre del Proyecto: Clínica Perfect_Smile</p>
+<p align="center">Descripcion del Proyecto: El objetivo de esta aplicacion es generar un control basico de los pacientes, asignar tratamientos y generar inventarios</p>
+<p align="center">Nombre: Javier Alberto Garcia Romero</p>
+
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
