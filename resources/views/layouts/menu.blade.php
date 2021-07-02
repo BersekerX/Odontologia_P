@@ -2,10 +2,11 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li class="menu-title">Main</li>
-                <li>
+                @auth
+                <li class="menu-title">Menú</li>
+                <!-- <li>
                     <a href="index-2.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
-                </li>
+                </li> -->
                 <li>
                     <a href="{{ route('dentista.index')}}"><i class="fa fa-user-md"></i> <span>Dentistas</span></a>
                 </li>
@@ -13,11 +14,17 @@
                     <a href="{{ route('paciente.index')}}"><i class="fa fa-user"></i> <span>Pacientes</span></a>
                 </li>
                 <li>
-                    <a href="{{ route('paciente.index')}}"><i class="fa fa-cube"></i> <span>Tratamientos</span></a>
+                    <a href="{{ route('tratamiento.index')}}"><i class="fa fa-calendar-check-o"></i> <span>Tratamientos</span></a>
                 </li>
 
+                <!-- <li>
+                    <a href="{{ route('factura.index')}}"><i class="fa fa-money"></i> <span>Facturas</span></a>
+                </li> -->
 
-                
+                <li>
+                    <a href="{{ route('inventario.index')}}"><i class="fa fa-edit"></i> <span>Inventarios</span></a>
+                </li>
+                @endauth
             </ul>
         </div>
     </div>

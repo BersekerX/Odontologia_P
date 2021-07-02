@@ -8,6 +8,17 @@ use Illuminate\Http\Request;
 
 class InventarioController extends Controller
 {
+    private $validacion;
+    public function __construct(){
+        $this->validacion = [
+            'nombreProducto' => ['required', 'string', 'min:3','max:255'],
+            'fechaCaducidad' => ['required', 'date'],
+            'ubicacion' => ['required', 'string', 'min:3','max:255'],
+            'tipoUnidad' => ['required', 'string', 'min:3','max:255'],
+            'stockActual' => ['required', 'int', 'min:1'],
+            'precioNeto' => ['required', 'int', 'min:1'],
+            'fecha' => ['required', 'date'],];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +26,11 @@ class InventarioController extends Controller
      */
     public function index()
     {
-        $inventarios = Inventario::get();
+        // $inventarios = Inventario::get();
+        //USANDO Eager Loading
+        $inventarios = Auth::user()->inventarios()->with('user:id,name')->get();
+        // dd($inventarios);
+
         return view('inventario.inventario-index', compact('inventarios'));
     }
 
@@ -37,6 +52,7 @@ class InventarioController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate($this->validacion);
 
         $inventario = new Inventario($request->all());
         $user = Auth::user();

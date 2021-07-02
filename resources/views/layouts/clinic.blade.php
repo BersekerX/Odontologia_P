@@ -21,7 +21,7 @@
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-				<a href="index-2.html" class="logo">
+				<a href="/inicio" class="logo">
 					<img src="{{asset('css/clinic/img/logo_.png')}}" width="35" height="35" alt=""> <span>Perfect Smile</span>
 				</a>
 			</div>
@@ -44,9 +44,9 @@
                         <span>{{ Auth::user()->name }}</span>
                     </a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="profile.html">Mi Perfil</a>
-						<a class="dropdown-item" href="edit-profile.html">Editar Perfil</a>
-						<a class="dropdown-item" href="settings.html">Configuración</a>
+						<!-- <a class="dropdown-item" href="">Mi Perfil</a>
+						<a class="dropdown-item" href="">Editar Perfil</a>
+						<a class="dropdown-item" href="settings.html">Configuración</a> -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 <!-- 

@@ -18,25 +18,31 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Invoice Number</th>
-                            <th>Patient</th>
-                            <th>Created Date</th>
-                            <th>Due Date</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th class="text-right">Action</th>
+                            <th>Nombre Producto</th>
+                            <th>Fecha Caducidad</th>
+                            <th>Ubicación</th>
+                            <th>Tipo Unidad</th>
+                            <th>Stock Actual</th>
+                            <th>Costo Unitario</th>
+                            <th>Fecha Elaboración</th>
+                            <th>Elaboró</th>
+                            <!-- <th class="text-right">Action</th> -->
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($inventarios as $inventario)
                         <tr>
-                            <td>1</td>
-                            <td><a href="invoice-view.html">#INV-0001</a></td>
-                            <td>Charles Ortega</td>
-                            <td>1 Aug 2018</td>
-                            <td>7 Aug 2018</td>
-                            <td>$20</td>
-                            <td><span class="custom-badge status-green">Paid</span></td>
-                            <td class="text-right">
+                            <td style="color:#0466c8"><strong>#INV-0{{$inventario->id}}</strong></td>
+                            <td style="color:#390099">{{$inventario->nombreProducto}}</td>
+                            <td>{{ $inventario->fechaCaducidad }}</td>
+                            <td>{{ $inventario->ubicacion }}</td>
+                            <td>{{ $inventario->tipoUnidad }}</td>
+                            <td>{{ $inventario->stockActual }}</td>
+                            <td>{{ $inventario->precioNeto }}</td>
+                            <td><span class="custom-badge status-green">{{ $inventario->fecha }}</span></td>
+                            <td><span class="custom-badge status-blue">{{ $inventario->user->name }}</span></td>
+
+                            <!-- <td class="text-right">
                                 <div class="dropdown dropdown-action">
                                     <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
@@ -46,8 +52,9 @@
                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_invoice"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                     </div>
                                 </div>
-                            </td>
+                            </td> -->
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

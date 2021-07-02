@@ -94,8 +94,10 @@
                         </div>
 
                         <div class="m-t-20 text-center">
-                                <button class="btn btn-success submit-btn">Guardar</button>
+                                <button class="btn btn-success submit-btn" data-toggle="modal" data-target="#save_patient">Guardar</button>
                         </div>
+
+
                         
                         </form>
                 </div>

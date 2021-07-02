@@ -2,12 +2,12 @@
 @section('contenido')
     <div class="row">
         <div class="col-sm-4 col-3">
-            <h4 class="page-title">Listado de Pacientes</h4>
+            <h4 class="page-title">Listado de Facturas</h4>
         </div>
         <div class="col-sm-8 col-9 text-right m-b-20">
-            <a href="{{ route('paciente.create')}}" class="btn btn-info float-right btn-rounded"><i class="fa fa-plus"></i> Agregar Paciente</a>
+            <a href="{{ route('factura.create')}}" class="btn btn-info float-right btn-rounded"><i class="fa fa-plus"></i> Generar Factura</a>
         </div>
-    </div>    
+    </div>
 
     <div class="row">
         <div class="col-md-12">
@@ -16,40 +16,35 @@
                 <!-- custom-table mb-0 datatable -->
                     <thead>
                         <tr>
-
-                            <th >Nombre</th>
-                            <th >Apellidos</th>
-                            <th >Fecha de Nacimiento</th>
-                            <th >Género</th>
-                            <th>Teléfono</th>
-                            <th>Email</th>
-                            <th>Acción</th>
+                            <th >ID</th>
+                            <th >Fecha</th>
+                            <th >No. de Tratamientos</th>
+                            <th >M. de Pago</th>
+                            <th>Abono</th>
+                            <th>Total</th>
+                            <th>Paciente</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($pacientes as $paciente)
+                        @foreach($facturas as $factura)
                         <tr>
                         <!-- style="min-width: 200px;" -->
                             <td >
-                                <a class="avatar" href="{{ route('paciente.show', $paciente->id)}}">{{ $paciente->nombre[0]}}</a>
-                                <h2><a href="{{ route('paciente.show', $paciente->id)}}">{{ $paciente->nombre}}</a></h2>
+                                {{ $factura->id}}
                             </td>
-
-                            <!-- <td>
-                                <img width="20" height="20" src=" {{asset('css/clinic/img/user.jpg') }}" class="rounded-circle" alt=""> <a href="{{ route('paciente.show', $paciente->id)}}">{{ $paciente->nombre}}</a>
-                            </td> -->
-                            <td>{{ $paciente->apellidos}}</td>
-                            <td>{{ $paciente->fechaNacimiento}}</td>
-                            <td>{{ $paciente->genero}}</td>
-                            <td>{{ $paciente->telefono}}</td>
-                            <td>{{ $paciente->email}}</td>
+                            <td>{{ $factura->fecha }}</td>
+                            <td>{{ $factura->noTratamientos}}</td>
+                            <td><span class="custom-badge status-green">{{ $factura->metodoPago}}</span></td>
+                            <td>{{ $factura->abono}}</td>
+                            <td>{{ $factura->totalFactura}}</td>
+                            <td>{{ $factura->paciente->nombre}}</td>
 
                             <!-- Action -->
                             <td>
                                 <a href="{{ route('paciente.edit', $paciente)}}"><i class="fa fa-pencil m-r-10"></i></a>
-                                @can('delete', $paciente)
                                 <a href="#" data-toggle="modal" data-target="#delete_paciente"><i class="fa fa-trash-o m-r-5"></i></a>
-                                @endcan
+                                
+
                                 <div id="delete_paciente" class="modal fade delete-modal" role="dialog">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
@@ -57,7 +52,7 @@
                                                 <img src="{{asset('css/clinic/img/sent.png') }}" alt="" width="50" height="46">
                                                 <h3>¿Estás seguro que deseas borrar a este paciente?</h3>
                                                 <div class="m-t-20"> 
-                                                    
+
                                                     <form action="{{ route('paciente.destroy', $paciente) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -69,7 +64,6 @@
                                                         <!-- <input type="submit" class="btn btn-danger btn-lg" value="Borrar"> -->
                                                 
                                                     </form>
-                                                    
 
                                                     <!-- <button type="submit" class="btn btn-danger">Borrar</button> -->
                                                 </div>
@@ -87,6 +81,5 @@
             </div>
         </div>
     </div>
-
 
 @endsection

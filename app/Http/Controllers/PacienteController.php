@@ -3,20 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tratamiento;
+use App\Models\Factura;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PacienteController extends Controller
 {
 
     private $validacion;
+    private $validacionF;
     public function __construct(){
         $this->validacion = [
             'nombre' => ['required', 'string', 'min:3','max:255'],
             'apellidos' => ['required', 'string', 'min:3', 'max:255'],
             'fechaNacimiento' => ['required', 'date'],
-            'telefono' => ['required', 'int', 'min:10'],
+            'telefono' => ['required', 'string', 'min:8'],
             'email' => ['required', 'string', 'min:5'],
+        ];
+
+        $this->validacionF = [
+            'fecha' => ['required', 'date'],
+            'noTratamiento' => ['required', 'string', 'min:1'],
+            'metodoPago' => ['required', 'string'],
+            'abono' => ['required', 'int', 'min:1'],
+            'pacienteId' => ['required'],
         ];
 
     }
@@ -52,8 +63,8 @@ class PacienteController extends Controller
         //Validar campos
         $request->validate($this->validacion);
 
-        $dentista = new Paciente($request->all()); 
-        $dentista->save();
+        $paciente = new Paciente($request->all()); 
+        $paciente->save();
 
         // Paciente::create($request->all());
         return redirect('/paciente');
@@ -105,6 +116,11 @@ class PacienteController extends Controller
      */
     public function destroy(Paciente $paciente)
     {
+        Gate::authorize('admin');
+        //Solo Administradores pueden eliminar pacientes
+        // $this->authorize('delete');
+
+
         $paciente->delete();
         return redirect()->route('paciente.index'); 
     }
@@ -119,7 +135,18 @@ class PacienteController extends Controller
     {
         // dd($request->all(), $paciente);
         $paciente->tratamientos()->sync($request->tratamiento_id);
-        
         return redirect()->route('paciente.show', $paciente);
+    }
+
+    public function asignaFactura(Request $request, Paciente $paciente)
+    {
+        //  dd($request->all(), $paciente);
+        // $request->validate($this->validacionF);
+
+        // $factura = new Factura($request->all()); 
+        // $paciente = Paciente::find($paciente);
+        // $paciente->facturas()->save($factura);
+
+        // return redirect()->route('paciente.show');
     }
 }

@@ -21,8 +21,8 @@ class CreatePacientesTable extends Migration
             $table->string('apellidos');
             $table->date('fechaNacimiento');
             $table->string('genero',1);
-            $table->biginteger('telefono');
-            $table->string('email',50);
+            $table->string('telefono',20);
+            $table->string('email',100);
             
             //$table->blob('foto');
 

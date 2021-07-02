@@ -46,8 +46,9 @@
 	          <li class="nav-item active"><a href="/" class="nav-link">Inicio</a></li>
 
             <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Iniciar Sesión</a></li>
+            @guest
             <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Registrarse</a></li>
-
+            @endguest
 	        </ul>
 	      </div>
 	    </div>

@@ -104,6 +104,8 @@ class DentistaController extends Controller
      */
     public function destroy(Dentista $dentistum)
     {
+        Gate::authorize('admin');
+
         $dentistum->delete();
         return redirect()->route('dentista.index');
     }

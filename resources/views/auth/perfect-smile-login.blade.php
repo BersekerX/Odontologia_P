@@ -21,7 +21,7 @@
                     <h3>Perfect Smile</h3>
                     <p>Tratamos de una forma integral cada una de las especialidades. Tratamientos personalizados para una sonrisa perfecta.</p>
                     <!-- <input type="submit" name="" value="Iniciar Sesión"/><br/> -->
-                    <a  href="{{ route('register') }}"><input type="submit" name="" value="Registrarse"/></a><br>
+                    <a  href="/register"><input type="submit" value="Registrarse"/></a><br>
 
                 </div>
                 <div class="col-md-9 register-right">

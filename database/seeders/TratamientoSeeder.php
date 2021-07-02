@@ -15,18 +15,18 @@ class TratamientoSeeder extends Seeder
     public function run()
     {
         Tratamiento::create(['nombre'=> 'Consulta General',
-                            'descripcion' => 'En odontología prevenir es literalmente curar. Un diagnóstico a tiempo te ayudará a evitar patologías bucodentales más graves en el futuro.',
+                            'descripcion' => 'Como prevenir es literalmente curar. Un diagnóstico a tiempo te ayudará a evitar patologías bucodentales más graves en el futuro.
+                            La historia de tu salud dental y general, permitirá al equipo de  la clínica una valoración inicial de acuerdo a tus necesidades.',
                             'precio' => '200.00',]);
 
         Tratamiento::create(['nombre'=> 'Limpieza Dental',
-                            'descripcion' => 'La limpieza dental, también llamada profilaxis, es un procedimiento en el cual se removerán manchas, sarro y placa dentobacteriana para mantener la salud de tus dientes y encías.',
+                            'descripcion' => 'También llamada profilaxis, es un procedimiento en el cual se removerán manchas, sarro y placa dentobacteriana para mantener la salud de tus dientes y encías.',
                             'precio' => '750.00',]);
 
 
         Tratamiento::create(['nombre'=> 'Blanqueamiento dental',
                             'descripcion' => 'Su objetivo es conseguir mejorar el color de los dientes produciéndose en pocas semanas un rejuvenecimiento dental dando luminosidad y brillo.
-                                            Se realiza utilizando un agente blanqueador con un  acelerador del proceso con la tecnología de luz led fría.
-                                            El resultado varía según el paciente y dependerá de los factores genéticos del paciente y también de los hábitos  pero podemos mejorar de 5 a 8 tonos en la mayoría de los tratamientos. ',
+                                            Se realiza utilizando un agente blanqueador con un  acelerador del proceso con la tecnología de luz led fría.',
                             'precio' => '350.00',]);
 
         Tratamiento::create(['nombre'=> 'Resina dental',

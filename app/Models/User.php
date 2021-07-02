@@ -25,8 +25,15 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
+    protected $fillable = ['name',
+                            'lastname',
+                            'birthdate',
+                            'gender',
+                            'speciality',
+                            'phone',
+                            'rol',
+                            'email', 
+                            'password',
     ];
 
     /**
@@ -58,4 +65,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function inventarios()
+    {
+        return $this->hasMany(Inventario::class);
+    }
 }

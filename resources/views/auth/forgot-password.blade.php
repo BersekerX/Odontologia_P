@@ -36,12 +36,6 @@
                                                 {{ __('No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
                                             </div>
 
-                                            @if (session('status'))
-                                                <div class="mb-4 font-medium text-sm text-green-600">
-                                                    {{ session('status') }}
-                                                </div>
-                                            @endif
-
                                             <input type="email" class="form-control" placeholder="{{ __('Email') }}" value="{{ old('email') }}" id="email" name="email" />
                                             @error('email')
                                                 <div><label style="color:#DC3545">{{ $message }}</label></div>

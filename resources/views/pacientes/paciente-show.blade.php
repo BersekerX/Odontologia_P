@@ -8,7 +8,6 @@
         </div>
         <div class="col-sm-5 col-6 text-right m-b-30">
             <a href="{{ route('paciente.edit', $paciente) }}" class="btn btn-primary btn-rounded"><i class="fa fa-pencil"></i> Editar Paciente</a>
-            <a href="{{ route('paciente.edit', $paciente) }}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Agregar Tratamiento</a>
         </div>
     </div>
 
@@ -33,13 +32,37 @@
                                     <div class="staff-id">Paciente ID : {{ $paciente->id}}</div>
 
                                     <div class="staff-msg">
-                                    
-                                        <form action="{{ route('paciente.destroy', $paciente) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <input type="submit" class="btn btn-danger btn-lg" value="Eliminar">
+                                        @can('delete',$paciente)
+                                        <button class="btn btn-danger btn-lg"  data-toggle="modal" data-target="#delete_paciente"><i class="fa fa-trash-o m-r-5"></i>Eliminar</button>
+                                        @endcan
 
-                                        </form>
+                                        <div id="delete_paciente" class="modal fade delete-modal" role="dialog">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-body text-center">
+                                                        <img src="{{asset('css/clinic/img/sent.png') }}" alt="" width="50" height="46">
+                                                        <h3>¿Estás seguro que deseas borrar a este paciente?</h3>
+                                                        <div class="m-t-20"> 
+                                                            
+                                                            <form action="{{ route('paciente.destroy', $paciente) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <!-- <button class="btn btn-danger submit-btn">Eliminar</button> -->
+                                                                <a href="#" class="btn btn-white" data-dismiss="modal">Cerrar</a>
+
+                                                                <!-- <a href="#" class="btn btn-danger" data-dismiss="modal">Cerrar</a> -->
+                                                                <!-- <button type="submit" class="btn btn-danger btn-lg">Borrar</button> -->
+                                                                <input type="submit" class="btn btn-danger" value="Si">
+                                                        
+                                                            </form>
+
+                                                            <!-- <button type="submit" class="btn btn-danger">Borrar</button> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>                                   
                                 </div>
                             </div>
@@ -76,7 +99,7 @@
         <ul class="nav nav-tabs nav-tabs-bottom">
             <li class="nav-item"><a class="nav-link active show" href="#agregar-tratamiento" data-toggle="tab">Agregar Tratamiento</a></li>
             <li class="nav-item"><a class="nav-link show" href="#tratamiento-paciente" data-toggle="tab">Tratamientos</a></li>
-            <!-- <li class="nav-item"><a class="nav-link" href="#bottom-tab3" data-toggle="tab">Messages</a></li> -->
+            <li class="nav-item"><a class="nav-link show" href="#agregar-factura" data-toggle="tab">Agregar Factura</a></li>
         </ul>
 
         <div class="tab-content">
@@ -102,9 +125,6 @@
                                                     <option value="{{$tratamiento->id}}" {{ array_search($tratamiento->id, $paciente->tratamientos->pluck('id')->toArray()) !== false ? 'selected' : '' }}>{{$tratamiento->nombre}}</option>
                                                 @endforeach
                                             </select>
-                                                <!-- <select class="select" name="tratamiento_id">
-
-                                                </select> -->
                                         </div>
                                     </div>
 
@@ -123,27 +143,20 @@
                     <div class="col-md-12">
                         @foreach($paciente->tratamientos as $tratamiento)
                             <div class="card-box">
-
                                 <div class="row">
                                     <div class="col-sm-7 col-6">
                                         <h3 class="card-title" style="color:#0A87C2">#{{ $paciente->id}}{{$tratamiento->id}}: {{$tratamiento->nombre }}</h3>
                                     </div>
-                                    <div class="col-sm-5 col-6 text-right m-b-30">
-                                        <form action="{{ route('paciente.elimina-tratamiento', $paciente) }}" method="POST">
-                                            @csrf
-                                            <input type="submit" class="btn btn-danger btn-lg" value="Eliminar" name="tratamiento_id">
-
-                                        </form>
-                                        <!-- <a href="#" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#delete_tratamiento" name="tratamiento_id" ><i class="fa fa-trash"></i></a> -->
+                                    <div class="col-sm-5 col-6 text-right m-b30">  
                                     </div>
                                     <div class="col-sm">
-                                        Dentista
+                                        Precio: {{$tratamiento->precio}}
                                     </div>
                                     <div class="col-sm">
-                                        Fecha
+                                        
                                     </div>
                                     <div class="col-sm">
-                                        xxxxx
+                                        
                                     </div>
                                     
                                 </div>
@@ -152,8 +165,130 @@
                     </div>
                 </div>    
             </div>
+
+            <div class="tab-pane show" id="agregar-factura">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card-box text-center">
+                            <h3>Factura</h3><br>
+                            <h3>Aun en desarrollo</h3><br>
+
+                            <form action="{{ route('paciente.asigna-factura', $paciente) }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 col-form-label" for="paciente_id">ID del Paciente</label>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control text-center" name="paciente_id" value="{{ $paciente->id}}" readonly="readonly" >
+                                                @error('paciente_id')
+                                                    <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 col-form-label" for="fecha">Fecha</label>
+                                            <div class="col-md-9">
+                                                <input type="date" class="form-control" name="fecha">
+                                                @error('fecha')
+                                                    <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 col-form-label" for="abono">Abono</label>
+                                            <div class="col-md-9">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                    <input class="form-control" type="text" name="abono">
+                                                </div>
+                                                @error('abono')
+                                                    <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- RighSide -->
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-5 col-form-label" for="noTratamientos">No. Tratamientos</label>
+                                        <!-- {{
+                                                $tratamientos=0
+                                            }} -->
+                                            @foreach($paciente->tratamientos as $tratamiento)
+                                                <!-- {{
+                                                    $tratamientos += 1
+                                                }} -->
+                                            @endforeach
+                                            
+                                            <div class="col-md-7">
+                                                <input type="text" class="form-control text-center" name="noTratamientos" value="{{$tratamientos}}" readonly="readonly" >
+                                                @error('noTratamientos')
+                                                    <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-5 col-form-label" for="metodoPago">Metodo de Pago</label>
+                                            <div class="col-md-7">
+                                                <select class="select select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="metodoPago">
+                                                    <option value="Efectivo">Efectivo</option>
+                                                    <option value="Tarjeta">Tarjeta</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group row">
+                                            <label class="col-md-5 col-form-label" for="deuda">Deuda</label>
+                                            <div class="col-md-7">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                    <input class="form-control" type="text" name="deuda">
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="form-group row">
+                                            <label class="col-md-5 col-form-label" for="totalFactura"><strong>TOTAL</strong></label>
+                                            <div class="col-md-7">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                    <!-- {{
+                                                        $total=0
+                                                    }} -->
+                                                    @foreach($paciente->tratamientos as $tratamiento)
+                                                        <!-- {{
+                                                            $total += $tratamiento->precio
+                                                        }} -->
+                                                    @endforeach
+
+                                                    <!-- <input type="text" class="form-control text-center" name="totalFactura" value="{{ $total}}" readonly="readonly" > -->
+
+                                                    <input type="text" class="form-control text-center" name="totalFactura" value="{{ $total}}" >
+                                                    @error('totalFactura')
+                                                        <div><label style="color:#DC3545">{{ $message }}</label></div>
+                                                    @enderror
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-right">
+                                    <button class="btn btn-info submit-btn" data-toggle="modal" data-target="#save_factura">Guardar</button>
+                                </div>
+
+                                
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 
 @endsection

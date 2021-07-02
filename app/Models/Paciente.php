@@ -15,6 +15,11 @@ class Paciente extends Model
                         'telefono',
                         'email',]; 
     
+    public function facturas()
+    {
+        return $this->hasMany(Factura::class);
+    }
+
     public function tratamientos()
     {
         return $this->belongsToMany(Tratamiento::class);
